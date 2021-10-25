@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>Update Todo</h3>
+        <hr>
+        <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label>Title</label>
+                <input type="text" class="form-control" formControlName="title" />
+                <div class="error" *ngIf="todoForm.get('title')?.touched && !todoForm.get('title')?.valid">
+                    <div *ngIf="todoForm.get('title')?.errors?.required">
+                        Title is required
+                    </div>
+                    <div *ngIf="todoForm.get('title')?.errors?.minlength">
+                        Title should be minimum 6 characters
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label>Description</label>
+                <textarea class="form-control" formControlName="description"></textarea>
+                <div class="error" *ngIf="todoForm.get('description')?.touched && !todoForm.get('description')?.valid">
+                    <div *ngIf="todoForm.get('description')?.errors?.required">
+                        Description is required
+                    </div>
+                    <div *ngIf="todoForm.get('description')?.errors?.minlength">
+                        Description should be minimum 10 characters
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-3">
+                <button type="submit" class="btn btn-primary">
+                    Update Todo
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
